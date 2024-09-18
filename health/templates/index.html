@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang='en' data-bs-them='auto'>
+{% load static %}
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="shortcut icon" type="image/png" href={% static 'medical_team.png' %}>
+  <link rel="stylesheet" href={% static "style.css" %}>
+  <style>
+    .bi {
+      font-size: xx-large;
+      padding-left: 8px;
+    }
+
+    #le_0_con {
+      height: 40px;
+      padding: 9px 13px 0px 13px;
+      margin: 0px;
+    }
+
+    #con_0 {
+      width: 100%;
+      height: 47px;
+      margin: 1px;
+    }
+
+    #le_1_con {
+      width: 16%;
+      font-size: xx-large;
+      margin: 0px;
+      border-top: 10px;
+      padding: 15px 0px 0px 200px;
+      list-style: none;
+    }
+
+    #le_0_con1 {
+      width: 99%;
+      padding: 5px 0px 0px 0px;
+    }
+
+    .h_0_con li {
+      float: inline-start;
+      list-style: none;
+      padding-left: 40px;
+    }
+
+    .image_size img {
+      height: 300px;
+      width: 100%;
+    }
+
+    #ri_0_con {
+      height: 37px;
+      margin-block-end: 5px;
+      float: right;
+    }
+
+    #ri_0_con img {
+      width: 33px;
+      display: inline;
+      padding-left: 10px;
+      border-radius: 15px;
+    }
+
+    #ri_1_con {
+      float: right;
+      padding: 0px 50px 0px 0px;
+      font-size: 20px;
+    }
+
+    .re {
+      color: black;
+    }
+
+    .re:hover {
+      color: blue;
+    }
+
+    .manu img {
+      width: 181px;
+      margin: 3px;
+      border: 8px;
+      padding: 4px;
+    }
+
+    .box a {
+      text-align: center;
+      display: block;
+      color: black;
+    }
+
+    .manu a:hover {
+      color: blue;
+    }
+
+    .pr {
+      border-radius: 134px;
+    }
+
+    .frontimg1 img {
+      width: 100%;
+      height: 600px;
+      padding: 2px 2px 2px 0px;
+      margin: 2px;
+    }
+
+    .frontimg2 {
+      width: 100%;
+      height: 500px;
+      padding: 2px 2px 2px 0px;
+      margin-right: 9px;
+      background-image: url(/static/slide2.jpg);
+      background-size: 100% 1036px;
+    }
+
+    input[type="text"] {
+      width: 400PX;
+      font-size: 141%;
+      background: transparent;
+      margin: 20px;
+      padding: 2px;
+      color: rgb(35, 105, 161);
+    }
+
+    input[type="submit"] {
+      width: 400PX;
+      font-size: 141%;
+      background: green;
+      margin: 20px;
+      padding: 2px;
+      color: white;
+    }
+  </style>
+  <title>{%block title%}{%endblock title%} | Health Care</title>
+  <nav class="navbar">
+    <div id="topcontainer1">
+      <div id="con_0">
+        <div id="le_0_con">
+          <div id="le_0_con1" class="h_0_con">
+            <i id="bi1" class="bi bi-facebook"></i>
+            <i class="bi bi-linkedin"></i>
+            <i class="bi bi-twitter-x"></i>
+            <i id="bi2" class="bi bi-youtube"></i>
+            <div id="ri_0_con">
+              <i class="bi bi-whatsapp"></i>
+              <a class="bi3" href="+918845293639">Call Us Today (+91)8845293639</a>
+              {% if not user.is_authenticated %}
+                  <img id="pr0i" src="/static/60111.jpg" alt="login">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="con_1">
+        <div id="le_1_con">
+          <li><b><i>Health Care</i></b></li>
+        </div>
+        <div id="ri_1_con" class="h_0_con">
+          <li>
+            <a class="re" href="/" role="tab" aria-controls="home" aria-selected="false"><i><b>Home</b></i></a>
+          </li>
+          <li>
+            <a class="re" href="/profile"><i><b>Profile</b></i></a>
+          </li>
+          <li>
+            <a class="re" href="#"><i><b>About</b></i></a>
+          </li>
+          <li>
+            <a class="re" href="#"><i><b>Childhood</b></i></a>
+          </li>
+          <li>
+            <a class="re" href="#"><i><b>Adulthood</b></i></a>
+          </li>
+          <li>
+            <a class="re" href="#"><i><b>Oldage</b></i></a>
+          </li>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </nav>
+  {% block head%}{%endblock head%}
+</head>
+
+<body>
+  <div class="frontimg1">
+    <img src="/static/slide4.jpg" alt="slide4">
+  </div>
+  <div class="manu">
+    <div class="box">
+      <img class="pr" src="/static/50819.jpg" alt="Home">
+      <a href="/" role="tab" aria-controls="home" aria-selected="false"><b>Home</b></a>
+    </div>
+    <div class="box">
+      <img class="pr" src="/static/60111.jpg" alt="Profile">
+      <a href="/profile"><b>Profile</b></a>
+    </div>
+    <div class="box">
+      <img class="pr" src="/static/3026238.jpg" alt="About Us">
+      <a href="#"><b>About Us</b></a>
+    </div>
+    <div class="box">
+      <img class="pr" src="/static/childhood.jpeg" alt="Childhood">
+      <a href="#"><b>Childhood</b></a>
+    </div>
+    <div class="box">
+      <img class="pr" src="/static/28533.jpg" alt="Adulthood">
+      <a href="#"><b>Adulthood</b></a>
+    </div>
+    <div class="box">
+      <img class="pr" src="/static/oldage.jpeg" alt="Oldage">
+      <a href="#"><b>Oldage</b></a>
+    </div>
+  </div>
+  <div class="frontimg2">
+    <div class="appion">
+      <h3>Make your Appointment</h3>
+      <form name="input" action="" method="get">
+        <input name="Department" placeholder="Department" type="text">
+        <input name="Doctor" placeholder="Doctor" type="text">
+        <input name="Name" placeholder="Name" type="text">
+        <input name="Phone_No" placeholder="Phone No" type="text">
+        <input name="make_an_appointment" placeholder="Make An Appointment" type="submit">
+      </form>
+    </div>
+  </div>
+</body>
+
+
+
+</html>
