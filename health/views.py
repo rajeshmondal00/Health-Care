@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
-from .models import Register_User
+from .models import Register_User,Auto_generate
+from .utility import id_generator,password_generator
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.http import JsonResponse
 # Create your views here.
 
 def home(request):
@@ -30,7 +33,18 @@ def use_register(request):
                 register_User=Register_User(first_name=first_name,last_name=last_name,address=address,dob=dob,pincode=pincode,email=email,phone=phone,password=password)
                 register_User.save()
                 messages.success(request, "Profile details updated.")
-                return render(request, 'e_verification.html')
+                auto_generate_id=id_generator()
+                auto_generate_password=password_generator()
+                auto_generate =Auto_generate(phone=phone,auto_user_id=auto_generate_id,auto_password=auto_generate_password)
+                auto_generate.save()
+                send_mail(
+                            subject="Your ID Code and Password : ",
+                            message=f"Your ID is {auto_generate_id} and password {auto_generate_password}",
+                            from_email='eatgreat090@example.com',
+                            recipient_list=[Register_User.email],
+                         )
+
+                return JsonResponse({'message': 'OTP sent to email successfully.'}, status=200)
             else:
                 messages.success(request, "email and phone number alrady used ...")
                 return redirect("/register")
