@@ -35,7 +35,7 @@ def use_register(request):
                 messages.success(request, "Profile details updated.")
                 auto_generate_id=id_generator()
                 auto_generate_password=password_generator()
-                auto_generate =Auto_generate(phone=phone,auto_user_id=auto_generate_id,auto_password=auto_generate_password)
+                auto_generate =Auto_generate(email=email,auto_user_id=auto_generate_id,auto_password=auto_generate_password)
                 auto_generate.save()
                 send_mail(
                             subject="Your ID Code and Password : ",

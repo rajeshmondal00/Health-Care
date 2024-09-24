@@ -20,7 +20,7 @@ class Register_User(models.Model):
 
 ## generate auto user id and password
 class Auto_generate(models.Model):
-    phone =  models.ForeignKey(Register_User, on_delete=models.CASCADE)
+    email =  models.ForeignKey(Register_User, on_delete=models.CASCADE)
     auto_user_id = models.CharField(max_length=12)
     auto_password = models.CharField(max_length=12)
 

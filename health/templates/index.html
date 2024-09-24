@@ -6,175 +6,324 @@
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
-    <link rel="shortcut icon" type="image/png" href={% static 'medical_team.png' %}>
-    <link rel="stylesheet" href={% static "style.css" %}>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"/>
-    <style>
-      .bi {
-        font-size: xx-large;
-        padding-left: 8px;
-      }
-
-      #le_0_con {
-        height: 40px;
-        padding: 9px 13px 0px 13px;
-        margin: 0px;
-      }
-
-      #con_0 {
-        width: 100%;
-        height: 47px;
-        margin: 1px;
-      }
-
-      #le_1_con {
-        width: 16%;
-        font-size: xx-large;
-        margin: 0px;
-        border-top: 10px;
-        padding: 15px 0px 0px 200px;
-        list-style: none;
-      }
-
-      #le_0_con1 {
-        width: 99%;
-        padding: 5px 0px 0px 0px;
-      }
-
-      .h_0_con li {
-        float: inline-start;
-        list-style: none;
-        padding-left: 40px;
-      }
-
-      .image_size img {
-        height: 300px;
-        width: 100%;
-      }
-
-      #ri_0_con {
-        height: 37px;
-        margin-block-end: 5px;
-        float: right;
-      }
-
-      #ri_0_con img {
-        width: 33px;
-        display: inline;
-        padding-left: 10px;
-        border-radius: 15px;
-      }
-
-      #ri_1_con {
-        float: right;
-        padding: 0px 50px 0px 0px;
-        font-size: 20px;
-      }
-
-      .re {
-        color: black;
-      }
-
-      .re:hover {
-        color: blue;
-      }
-
-      .manu img {
-        width: 181px;
-        margin: 3px;
-        border: 8px;
-        padding: 4px;
-      }
-
-      .box a {
-        text-align: center;
-        display: block;
-        color: black;
-      }
-
-      .manu a:hover {
-        color: blue;
-      }
-
-      .pr {
-        border-radius: 134px;
-      }
-
-      .frontimg1 {
-        background-image: url(/static/medical-banner-with-doctor.jpg);
-        width: 100%;
-        height: 600px;
-        padding: 2px 2px 2px 0px;
-        margin: 2px;
-        opacity: 140%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      .frontimg2 {
-        width: 100%;
-        height: 500px;
-        padding: 2px 2px 2px 0px;
-        margin-right: 9px;
-        background-image: url(/static/slide2.jpg);
-        background-size: 100% 1036px;
-      }
-
-      input[type="text"] {
-        width: 400px;
-        font-size: 141%;
-        background: transparent;
-        margin: 20px;
-        padding: 2px;
-        color: rgb(35, 105, 161);
-      }
-
-      input[type="submit"] {
-        width: 400px;
-        font-size: 141%;
-        background: green;
-        margin: 20px;
-        padding: 2px;
-        color: white;
-      }
-      .bg-image {
-        background-image: url(/static/nav_bar_image.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-      nav div img{
-          height: 35px;
-      }
-      .dropdown-menu{
-        background-image: url(/static/nav_bar_image.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-      nav{
-        opacity: 160%;
-      }
-      .card{
-        background: transparent;
-      }
-      .card-title{
-        font-family:"Lucida" Grande, sans-serif;
-        color: #d5f5e3  ;
-      }
-    </style>
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>{%block title%}{%endblock title%} | Health Care</title>
+    {% block head%}{%endblock head%}
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+  <link rel="shortcut icon" type="image/png" href={% static 'medical_team.png'
+  %}>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href={% static "style.css" %}>
+
+  <style>
+    .bi {
+      font-size: xx-large;
+      padding-left: 8px;
+    }
+
+    #le_0_con {
+      height: 40px;
+      padding: 9px 13px 0px 13px;
+      margin: 0px;
+    }
+
+    #con_0 {
+      width: 100%;
+      height: 47px;
+      margin: 1px;
+    }
+
+    #le_1_con {
+      width: 16%;
+      font-size: xx-large;
+      margin: 0px;
+      border-top: 10px;
+      padding: 15px 0px 0px 200px;
+      list-style: none;
+    }
+
+    #le_0_con1 {
+      width: 99%;
+      padding: 5px 0px 0px 0px;
+    }
+
+    .h_0_con li {
+      float: inline-start;
+      list-style: none;
+      padding-left: 40px;
+    }
+
+    .image_size img {
+      height: 300px;
+      width: 100%;
+    }
+
+    #ri_0_con {
+      height: 37px;
+      margin-block-end: 5px;
+      float: right;
+    }
+
+    #ri_0_con img {
+      width: 33px;
+      display: inline;
+      padding-left: 10px;
+      border-radius: 15px;
+    }
+
+    #ri_1_con {
+      float: right;
+      padding: 0px 50px 0px 0px;
+      font-size: 20px;
+    }
+
+    .re {
+      color: black;
+    }
+
+    .re:hover {
+      color: blue;
+    }
+
+    .manu img {
+      width: 181px;
+      margin: 3px;
+      border: 8px;
+      padding: 4px;
+    }
+
+    .box a {
+      text-align: center;
+      display: block;
+      color: black;
+    }
+
+    .manu a:hover {
+      color: blue;
+    }
+
+    .pr {
+      border-radius: 134px;
+    }
+
+    .frontimg1 {
+      background-image: url(/static/medical-banner-with-doctor.jpg);
+      width: 100%;
+      height: 600px;
+      padding: 2px 2px 2px 0px;
+      margin: 2px;
+      opacity: 140%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .frontimg2 {
+      width: 100%;
+      height: 500px;
+      padding: 2px 2px 2px 0px;
+      margin-right: 9px;
+      background-image: url(/static/slide2.jpg);
+      background-size: 100% 1036px;
+    }
+
+    input[type="text"] {
+      width: 400px;
+      font-size: 141%;
+      background: transparent;
+      margin: 20px;
+      padding: 2px;
+      color: rgb(35, 105, 161);
+    }
+
+    input[type="submit"] {
+      width: 400px;
+      font-size: 141%;
+      background: green;
+      margin: 20px;
+      padding: 2px;
+      color: white;
+    }
+    .bg-image {
+      background-image: url(/static/nav_bar_image.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    nav div img {
+      height: 35px;
+    }
+    .dropdown-menu {
+      background-image: url(/static/nav_bar_image.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    nav {
+      opacity: 160%;
+    }
+    .card {
+      background: transparent;
+    }
+    .card-title {
+      font-family: "Lucida" Grande, sans-serif;
+      color: #d5f5e3;
+    }
+
+    .site-footer {
+      background-color: #08b650e8;
+      padding: 45px 0 20px;
+      font-size: 15px;
+      line-height: 24px;
+      color: #737373;
+    }
+    .site-footer hr {
+      border-top-color: #bbb;
+      opacity: 0.5;
+    }
+    .site-footer hr.small {
+      margin: 20px 0;
+    }
+    .site-footer h6 {
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+    .site-footer a {
+      color: #737373;
+    }
+    .site-footer a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+    .footer-links {
+      padding-left: 0;
+      list-style: none;
+    }
+    .footer-links li {
+      display: block;
+    }
+    .footer-links a {
+      color: #737373;
+    }
+    .footer-links a:active,
+    .footer-links a:focus,
+    .footer-links a:hover {
+      color: #3366cc;
+      text-decoration: none;
+    }
+    .footer-links.inline li {
+      display: inline-block;
+    }
+    .site-footer .social-icons {
+      text-align: right;
+    }
+    .site-footer .social-icons a {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 6px;
+      margin-right: 0;
+      border-radius: 100%;
+      background-color: #33353d;
+    }
+    .copyright-text {
+      margin: 0;
+    }
+    @media (max-width: 991px) {
+      .site-footer [class^="col-"] {
+        margin-bottom: 30px;
+      }
+    }
+    @media (max-width: 767px) {
+      .site-footer {
+        padding-bottom: 0;
+      }
+      .site-footer .copyright-text,
+      .site-footer .social-icons {
+        text-align: center;
+      }
+    }
+    .social-icons {
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+    .social-icons li {
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .social-icons li.title {
+      margin-right: 15px;
+      text-transform: uppercase;
+      color: #96a2b2;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .social-icons a {
+      background-color: #eceeef;
+      color: #818a91;
+      font-size: 16px;
+      display: inline-block;
+      line-height: 44px;
+      width: 44px;
+      height: 44px;
+      text-align: center;
+      margin-right: 8px;
+      border-radius: 100%;
+      -webkit-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+    .social-icons a:active,
+    .social-icons a:focus,
+    .social-icons a:hover {
+      color: #fff;
+      background-color: #29aafe;
+    }
+    .social-icons.size-sm a {
+      line-height: 34px;
+      height: 34px;
+      width: 34px;
+      font-size: 14px;
+    }
+    .social-icons a.facebook:hover {
+      background-color: #3b5998;
+    }
+    .social-icons a.twitter:hover {
+      background-color: #00aced;
+    }
+    .social-icons a.linkedin:hover {
+      background-color: #007bb6;
+    }
+    .social-icons a.dribbble:hover {
+      background-color: #ea4c89;
+    }
+    @media (max-width: 767px) {
+      .social-icons li.title {
+        display: block;
+        margin-right: 0;
+        font-weight: 600;
+      }
+    }
+  </style>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-image">
       <div class="container-fluid">
-        <img class="navbar-image" src="/static/medical_team.png" alt="icon">
+        <img class="navbar-image" src="/static/medical_team.png" alt="icon" />
         <a class="navbar-brand" href="/">Health Care</a>
         <button
           class="navbar-toggler"
@@ -196,7 +345,15 @@
               <a class="nav-link" href="#">Profile</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Programs</a>
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Programs</a
+              >
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#"></a></li>
                 <li><a class="dropdown-item" href="#">Childhood</a></li>
@@ -223,26 +380,27 @@
               class="form-control me-2"
               type="search"
               placeholder="Search"
-              aria-label="Search"/>
+              aria-label="Search"
+            />
             <button class="btn btn-success" type="submit">Search</button>
-              <button type="submit" class="btn btn-outline-success">
-                <a href="/register" >Signup</a></button>
-              <button type="submit" class="btn btn-outline-success">
-                <a href="/login" >Signin</a></button>
+            <button type="submit" class="btn btn-outline-success">
+              <a href="/register">Signup</a>
+            </button>
+            <button type="submit" class="btn btn-outline-success">
+              <a href="/login">Signin</a>
+            </button>
           </form>
         </div>
       </div>
     </nav>
-
-    {% block head%}{%endblock head%}
-  </head>
-
-  <body>
     <div class="frontimg1">
-      <div class="card border-dark mb-3" style="max-width: 18rem;">
+      <div class="card border-dark mb-3" style="max-width: 18rem">
         <div class="card-body text-dark">
           <h5 class="card-title">We are care for your family</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
         </div>
       </div>
     </div>
@@ -290,6 +448,119 @@
         </form>
       </div>
     </div>
+
+    <!-- this is footer -->
+    <section>
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About</h6>
+              <p class="text-justify">
+                Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative
+                to help the upcoming programmers with the code. Scanfcode
+                focuses on providing the most efficient code or snippets as the
+                code wants to be simple. We will help programmers build up
+                concepts in different programming languages that include C, C++,
+                Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and
+                Algorithm.
+              </p>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+              <h6>Categories</h6>
+              <ul class="footer-links">
+                <li>
+                  <a href="http://scanfcode.com/category/c-language/">C</a>
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/category/front-end-development/"
+                    >UI Design</a
+                  >
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/category/back-end-development/"
+                    >PHP</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="http://scanfcode.com/category/java-programming-language/"
+                    >Java</a
+                  >
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/category/android/">Android</a>
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/category/templates/"
+                    >Templates</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li>
+                  <a href="http://scanfcode.com/about/">About Us</a>
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/contact/">Contact Us</a>
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/contribute-at-scanfcode/"
+                    >Contribute</a
+                  >
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/privacy-policy/"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a href="http://scanfcode.com/sitemap/">Sitemap</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">
+                Copyright &copy; 2017 All Rights Reserved by
+                <a href="#">Scanfcode</a>.
+              </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li>
+                  <a class="facebook" href="#"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="twitter" href="#"><i class="fa-brands fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a class="dribbble" href="#"
+                    ><i class="fa-brands fa-dribbble"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="linkedin" href="#"
+                    ><i class="fa-brands fa-linkedin"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
