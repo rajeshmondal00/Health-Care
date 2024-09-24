@@ -176,7 +176,7 @@
     .card {
       background: transparent;
     }
-    .card-title {
+    .card-title-front {
       font-family: "Lucida" Grande, sans-serif;
       color: #d5f5e3;
     }
@@ -319,6 +319,20 @@
         font-weight: 600;
       }
     }
+    h5{
+    color: black;
+    }
+    .doctors{
+      margin-right: auto;
+      margin-left: auto;
+      align-items: center;
+      text-align: center;
+      width: 18rem;
+      display:inline-block
+    }
+    .carousel-item{
+      margin: 50px 20px 50px 20px;
+    }
   </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-image">
@@ -396,8 +410,8 @@
     <div class="frontimg1">
       <div class="card border-dark mb-3" style="max-width: 18rem">
         <div class="card-body text-dark">
-          <h5 class="card-title">We are care for your family</h5>
-          <p class="card-text">
+          <h5 class="card-title-front">We are care for your family</h5>
+          <p class="card-text-front">
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
@@ -432,6 +446,77 @@
         <a href="#"><b>Oldage</b></a>
       </div>
     </div>
+
+    <!-- the list of doctors -->
+    <doctors>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="card doctors">
+                <img src="/static/doctors/first_doctor.jpg" class="card-img-top" alt="Dr. Ariana Chernich">
+                <div class="card-body">
+                  <h5 class="card-title">Dr. Ariana Chernich</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card doctors">
+                <img src="/static/doctors/second_doctor.jpg" class="card-img-top" alt="Dr. Ivan Randon">
+                <div class="card-body">
+                  <h5 class="card-title">Dr. Ivan Randon</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+              <div class="card doctors">
+                <img src="/static/doctors/third_doctor.jpg" class="card-img-top" alt="Dr. Jazmine Kenely">
+                <div class="card-body">
+                  <h5 class="card-title">Dr. Jazmine Kenely</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+              <div class="row">
+                <div class="card doctors">
+                  <img src="/static/doctors/forth_doctor.jpg" class="card-img-top" alt="Dr. Romeo Casimir">
+                  <div class="card-body">
+                    <h5 class="card-title">Dr. Romeo Casimir</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+                <div class="card doctors">
+                  <img src="/static/doctors/fifth_doctor.jpg" class="card-img-top" alt="Dr. Mason Donnell">
+                  <div class="card-body">
+                    <h5 class="card-title">Dr. Mason Donnell</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+                <div class="card doctors">
+                  <img src="/static/doctors/sixth_doctor.jpg" class="card-img-top" alt="Dr. Cayden Licerio">
+                  <div class="card-body">
+                    <h5 class="card-title">Dr. Cayden Licerio</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </doctors>
     <div class="frontimg2">
       <div class="appion">
         <h3>Make your Appointment</h3>
