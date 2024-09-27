@@ -96,6 +96,12 @@
       color: blue;
     }
 
+    .manu{
+      margin-right: auto;
+      margin-left: auto;
+      align-items: center;
+      display:inline-block;
+    }
     .manu img {
       width: 181px;
       margin: 3px;
@@ -104,9 +110,9 @@
     }
 
     .box a {
-      text-align: center;
-      display: block;
       color: black;
+      text-align: center;
+      /*display: block;*/
     }
 
     .manu a:hover {
@@ -418,42 +424,67 @@
         </div>
       </div>
     </div>
-    <div class="manu">
-      <div class="box">
-        <img class="pr" src="/static/50819.jpg" alt="Home" />
-        <a href="/" role="tab" aria-controls="home" aria-selected="false"
-          ><b>Home</b></a
-        >
-      </div>
-      <div class="box">
-        <img class="pr" src="/static/60111.jpg" alt="Profile" />
-        <a href="/profile"><b>Profile</b></a>
-      </div>
-      <div class="box">
-        <img class="pr" src="/static/3026238.jpg" alt="About Us" />
-        <a href="#"><b>About Us</b></a>
-      </div>
-      <div class="box">
-        <img class="pr" src="/static/childhood.jpeg" alt="Childhood" />
-        <a href="#"><b>Childhood</b></a>
-      </div>
-      <div class="box">
-        <img class="pr" src="/static/28533.jpg" alt="Adulthood" />
-        <a href="#"><b>Adulthood</b></a>
-      </div>
-      <div class="box">
-        <img class="pr" src="/static/oldage.jpeg" alt="Oldage" />
-        <a href="#"><b>Oldage</b></a>
-      </div>
-    </div>
+    <!-- this is navigation section -->
 
+    <navigation>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row manu">
+              <div class="box ">
+                
+                <a href="/" role="tab" aria-controls="home" aria-selected="false"><img class="pr" src="/static/50819.jpg" alt="Home" /><b>Home</b></a>
+              </div>
+            <div class="box ">
+              
+              <a href="/profile"><img class="pr" src="/static/60111.jpg" alt="Profile" /><b>Profile</b></a>
+            </div>
+            <div class="box ">
+              
+              <a href="#"><img class="pr" src="/static/3026238.jpg" alt="About Us" /><b>About Us</b></a>
+            </div>
+          </div>
+            
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="box manu">
+                <img class="pr" src="/static/childhood.jpeg" alt="Childhood" />
+                <a href="#"><b>Childhood</b></a>
+              </div>
+              <div class="box manu">
+                <img class="pr" src="/static/28533.jpg" alt="Adulthood" />
+                <a href="#"><b>Adulthood</b></a>
+              </div>
+              <div class="box manu">
+                <img class="pr" src="/static/oldage.jpeg" alt="Oldage" />
+                <a href="#"><b>Oldage</b></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </navigation>
+    
     <!-- the list of doctors -->
     <doctors>
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
