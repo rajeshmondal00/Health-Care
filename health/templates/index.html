@@ -25,7 +25,6 @@
   />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href={% static "style.css" %}>
-
   <style>
     .bi {
       font-size: xx-large;
@@ -424,6 +423,19 @@
         </div>
       </div>
     </div>
+    {% if user.is_authenticated %}
+    <div class="forntimg1">
+      <div class="card border-dark mb-3" style="max-width: 18rem"></div>
+        <div class="card-body text-dark">
+          <h5 class="card-title-front">We are care for your family</h5>
+          <p class="card-text-front">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
     <!-- this is navigation section -->
 
     <navigation>

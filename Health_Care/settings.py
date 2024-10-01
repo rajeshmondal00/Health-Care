@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     ###
     'health.apps.HealthConfig',
+    'django_otp',
+    'django_otp.plugins.otp_totp',  # If using TOTP
+    'django_otp.plugins.otp_static',  # If using static OTPs
 ]
 
 MIDDLEWARE = [
@@ -141,5 +144,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ="xxxxxxxxxxxxx@gmail.com"
-EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxx"
+EMAIL_HOST_USER ="xxxxxxxxxxxxxxx@gmail.com"
+EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxx"

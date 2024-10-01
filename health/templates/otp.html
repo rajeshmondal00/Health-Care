@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otp verification</title>
+</head>
+<link rel="stylesheet" href={% static "/css/otp.css" %}>
+<body>
+    <div class="otp-card">
+        <h1>OTP Verfication</h1>
+        <p>Code has been send to ******123</p>
+        <div class="otp-card-input">
+            <input type="text" maxlength="1" autofocus>
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+        </div>
+        <p>Didn't get the otp <a href="#">Resend</a></p>
+        <button disabled>Verify</button>
+    </div>
+</body>
+<script src={% static "/js/otp.js" %}></script>
+</html>

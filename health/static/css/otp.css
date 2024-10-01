@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+h1{
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins",sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/static/slide2.jpg");
+    background-size: cover;
+    height: 100vh;
+
+}
+
+.otp-card{
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px -20px black;
+}
+
+.otp-card-input {
+    margin: 30px 0;
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+    grid-template-columns: repeat(6 ,auto);
+}
+
+.otp-card-input input{
+    width: 60px;
+    height: 70px;
+    font-size: 35px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+.otp-card-input input:focus {
+    outline: 2px solid blueviolet;
+    border-color: transparent;
+}
+
+.otp-card button {
+    background-color: blueviolet;
+    border: none;
+    padding: 15px 50px;
+    font-size: 18px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.otp-card button:hover {
+    opacity: .9;
+}
+
+.otp-card button[disabled] {
+    opacity: .6;
+    cursor: default;
+}
