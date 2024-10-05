@@ -8,20 +8,24 @@
 </head>
 <link rel="stylesheet" href={% static "/css/otp.css" %}>
 <body>
-    <div class="otp-card">
-        <h1>OTP Verfication</h1>
-        <p>Code has been send to ******123</p>
-        <div class="otp-card-input">
-            <input type="text" maxlength="1" autofocus>
-            <input type="text" maxlength="1">
-            <input type="text" maxlength="1">
-            <input type="text" maxlength="1">
-            <input type="text" maxlength="1">
-            <input type="text" maxlength="1">
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="otp-card">
+            <h1>OTP Verification</h1>
+            <p>Code has been sent to ******123</p>
+            <div class="otp-card-input">
+                <input type="text" maxlength="1" name="otp1" autofocus>
+                <input type="text" maxlength="1" name="otp2">
+                <input type="text" maxlength="1" name="otp3">
+                <input type="text" maxlength="1" name="otp4">
+                <input type="text" maxlength="1" name="otp5">
+                <input type="text" maxlength="1" name="otp6">
+            </div>
+            <p>Didn't get the OTP? <a href="#">Resend</a></p>
+            <button type="submit">Verify</button>
         </div>
-        <p>Didn't get the otp <a href="#">Resend</a></p>
-        <button disabled>Verify</button>
-    </div>
+    </form>
 </body>
 <script src={% static "/js/otp.js" %}></script>
 </html>

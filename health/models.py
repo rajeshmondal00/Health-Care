@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 ## user registration
 class Register_User(models.Model):
@@ -29,14 +31,11 @@ class Auto_generate(models.Model):
         self.auto_password = make_password(self.auto_password)
         super(Auto_generate, self).save(*args, **kwargs)
 
-# from django.utils import timezone
-# from datetime import timedelta
-    # def is_valid(self):
-    #     return timezone.now() < self.created_at + timedelta(minutes=10)  # OTP valid for 10 minutes
+class OTP(models.Model):
+    email =  models.ForeignKey(Register_User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    otp_created_at = models.DateTimeField(blank=True, null=True)
 
-
-## otp generate models
-# from django_otp.models import OTPBase
-
-# class CustomOTP(OTPBase):
-#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    def is_otp_valid(self, otp):
+        time_diff = timezone.now() - self.otp_created_at
+        return self.otp == otp and time_diff.total_seconds() < 300  # 5 minutes validity
