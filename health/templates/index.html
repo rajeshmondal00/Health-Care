@@ -401,12 +401,18 @@
               aria-label="Search"
             />
             <button class="btn btn-success" type="submit">Search</button>
+            {% if user.is_authenticated %}
+            <button type="submit" class="btn btn-outline-success">
+              <a href="/register">Logout</a>
+            </button>
+            {% else%}
             <button type="submit" class="btn btn-outline-success">
               <a href="/register">Signup</a>
             </button>
             <button type="submit" class="btn btn-outline-success">
-              <a href="/login">Signin</a>
+              <a href="/login/">Signin</a>
             </button>
+            {% endif %}
           </form>
         </div>
       </div>
@@ -422,7 +428,7 @@
         </div>
       </div>
     </div>
-    {% if user.is_authenticated %}
+    {% comment %} {% if user.is_authenticated %}
     <div class="forntimg1">
       <div class="card border-dark mb-3" style="max-width: 18rem"></div>
         <div class="card-body text-dark">
@@ -434,7 +440,7 @@
         </div>
       </div>
     </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
     <!-- this is navigation section -->
 
     <navigation>

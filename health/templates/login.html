@@ -1,10 +1,12 @@
-
+<!DOCTYPE html>
+<html>
+    <head>
 {% load static %}
+</head>
 <link rel="shortcut icon" type="image/png" href={% static 'medical_team.png' %}>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <style>
     body {
         font-family: "Lato", sans-serif;
@@ -81,8 +83,19 @@
         background-color: #000 !important;
         color: #fff;
     }
+    .required{
+            color: red;
+          }
 </style>
-<div class="sidenav">
+<body>
+    <div class="container">
+        {% if massages%}
+          {% for message in massages %}
+            {{messages}}
+          {% endfor %}
+          {% endif %}
+      </div>
+    <div class="sidenav">
          <div class="login-main-text">
             <h2>Application<br> Login Page</h2>
             <p>Login or register from here to access.</p>
@@ -94,12 +107,16 @@
                <form method="POST">
                 {% csrf_token %}
                   <div class="form-group">
-                     <label>User ID</label>
-                     <input type="text" name="user_id" class="form-control" placeholder="Enter your User ID">
+                     <label>User Email <span class="required">*</span></label>
+                     <input type="email" name="email" class="form-control" placeholder="Enter your User Email ID" required>
                   </div>
                   <div class="form-group">
-                     <label>Password</label>
-                     <input type="password" name="password" class="form-control" placeholder="Password">
+                     <label>User ID <span class="required">*</span></label>
+                     <input type="text" name="user_id" class="form-control" placeholder="Enter your User ID" required>
+                  </div>
+                  <div class="form-group">
+                     <label>Password <span class="required">*</span></label>
+                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <a href="/forgotpassword">forgot password</a>
@@ -112,3 +129,5 @@
             </div>
          </div>
       </div>
+    </body>
+</html>

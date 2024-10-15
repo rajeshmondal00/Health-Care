@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,22 +27,34 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
+   
+    'rest_framework',
+    'health.apps.HealthConfig',
+    'django_extensions',
+     ###
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ###
-    'health.apps.HealthConfig',
-    'django_otp',
-    'django_otp.plugins.otp_totp',  # If using TOTP
-    'django_otp.plugins.otp_static',  # If using static OTPs
 ]
+
+# REST framework authentication classes
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',  # For token-based auth
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Add this for JWT auth
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # Enforce authenticated requests by default
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -144,5 +156,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ="rajeshmondalmain@gmail.com"
-EMAIL_HOST_PASSWORD = "uizzarwahwtdysjd"
+EMAIL_HOST_USER ="xxxxxxxxxxxxx@gmail.com"
+EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxx"
+
+## access token time and refress token time
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': 'your_secret_key',  # Set your secret key here
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}

@@ -10,3 +10,4 @@ urlpatterns = [
     path('forgotpassword/',views.forgot_password,name='forgot_password'),
     path('verify_otp/', views.verify_otp , name="verify_otp"),
 ]
+
