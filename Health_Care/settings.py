@@ -156,16 +156,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ="dddddddddddddddd@gmail.com"
-EMAIL_HOST_PASSWORD = "dddddddddddddddd"
-
-## access token time and refress token time
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': 'your_secret_key',  # Set your secret key here
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
+EMAIL_HOST_USER ="xxxxxxxxxxxxxxx@gmail.com"
+EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxxx"
