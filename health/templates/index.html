@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>{%block title%}{%endblock title%} | Health Care</title>
+    <title>{%block title%}{%endblock title%}Home | Health Care</title>
     {% block head%}{%endblock head%}
   </head>
   <link
@@ -403,9 +403,9 @@
             <button class="btn btn-success" type="submit">Search</button>
             {% if user.is_authenticated %}
             <button type="submit" class="btn btn-outline-success">
-              <a href="/register">Logout</a>
+              <a href="/logout">Logout</a>
             </button>
-            {% else%}
+            {% else %}
             <button type="submit" class="btn btn-outline-success">
               <a href="/register">Signup</a>
             </button>

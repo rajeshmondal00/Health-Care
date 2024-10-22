@@ -156,8 +156,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ="xxxxxxxxxxxxx@gmail.com"
-EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxx"
+EMAIL_HOST_USER ="dddddddddddddddd@gmail.com"
+EMAIL_HOST_PASSWORD = "dddddddddddddddd"
 
 ## access token time and refress token time
 SIMPLE_JWT = {

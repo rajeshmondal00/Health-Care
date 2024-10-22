@@ -1,6 +1,7 @@
 from django.contrib.auth.backends import ModelBackend
 from .models import Auto_generate
 from django.contrib.auth.hashers import check_password 
+from django.contrib.auth.models import User
 ## custome authencation model
         
 class CustomAuth(ModelBackend):
@@ -8,32 +9,14 @@ class CustomAuth(ModelBackend):
     def authenticate(**credentials):
         return super(CustomAuth, self).authenticate(**credentials)
 
-    def check_user(user_id, auto_user_id,password, auto_password): ## check the user id and password
-        hash_password= check_password(password,auto_password)
-        print(hash_password)
-        if user_id == auto_user_id and check_password(password,auto_password):
-            return True
-        else:
-            return False
-    
-    # def check_password(password, auto_password): ## check the user password
-    #     hash_password= make_password(password)
-    #     print(hash_password,password)
-    #     if auto_password == hash_password:
-    #         return True
-    #     else:
-    #         return False
-    
-    def authenticate(self, email=None , user_id=None, password=None):    
+    def authenticate(self, user_id=None, password=None):    
         # Check the password and return a User.
-        if  email!= None and user_id!= None and password != None:
+        if  user_id!= None and password != None:
             # Get the user
-                user = Auto_generate.objects.get(email=email.lower()) ## to select the user we need primary key
-                print(user)
-                print(user.auto_password,password)
-                if  CustomAuth.check_user(user_id,user.auto_user_id,password,user.auto_password): ## check the password and user id of the user
-                    print(user.auto_password,password)
-                    return user
+                user1 = User.objects.get(username=user_id) ## to select the user we need primary key of the User table
+                user2 = Auto_generate.objects.get(auto_user_id=user_id) ## to select the user we need primary key of the Auto_generate table
+                if  check_password(password,user2.auto_password): ## check the password of the user
+                    return user1
                 else:
                     return None
         return None
