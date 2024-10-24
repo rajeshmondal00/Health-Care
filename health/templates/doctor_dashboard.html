@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href={% static "doctor_dashboard.css" %}>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Doctor Dashboard</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">My Patients</a></li>
+            <li><a href="#">Appointments</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header Section -->
+        <header>
+            <h1>Welcome, Dr. Smith</h1>
+            <p>Today is <span id="current-date"></span></p>
+        </header>
+
+        <!-- Quick Stats Section -->
+        <div class="stats">
+            <div class="stat-box">
+                <h3>Patients</h3>
+                <p>25</p>
+            </div>
+            <div class="stat-box">
+                <h3>Appointments Today</h3>
+                <p>8</p>
+            </div>
+            <div class="stat-box">
+                <h3>Messages</h3>
+                <p>4</p>
+            </div>
+        </div>
+
+        <!-- Patients List -->
+        <section class="patients">
+            <h2>My Patients</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Age</th>
+                        <th>Condition</th>
+                        <th>Last Visit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>45</td>
+                        <td>Hypertension</td>
+                        <td>Oct 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>30</td>
+                        <td>Diabetes</td>
+                        <td>Oct 20, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Robert Brown</td>
+                        <td>50</td>
+                        <td>Heart Disease</td>
+                        <td>Oct 18, 2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Appointments -->
+        <section class="appointments">
+            <h2>Today's Appointments</h2>
+            <ul>
+                <li>10:00 AM - John Doe - Consultation</li>
+                <li>11:30 AM - Jane Smith - Follow-up</li>
+                <li>01:00 PM - Robert Brown - Heart Check-up</li>
+                <li>03:00 PM - Emily Clark - General Check-up</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Script to display current date
+        const dateElement = document.getElementById('current-date');
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = new Date().toLocaleDateString('en-US', options);
+    </script>
+</body>
+</html>

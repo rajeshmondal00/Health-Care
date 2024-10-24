@@ -34,6 +34,7 @@ class Auto_generate(models.Model):
     auto_user_id = models.CharField(max_length=12)
     auto_password = models.CharField(max_length=255)
     last_login = models.DateTimeField(blank=True, null=True)
+    
 
 class OTP(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
@@ -43,3 +44,4 @@ class OTP(models.Model):
     def is_otp_valid(self, otp):
         time_diff = timezone.now() - self.otp_created_at
         return self.otp == otp and time_diff.total_seconds() < 300  # 5 minutes validity
+    

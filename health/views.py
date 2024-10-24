@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from django.contrib.auth import login ,logout
 from .models import Register_User,Auto_generate,OTP
@@ -6,11 +7,12 @@ from .utility import id_generator,password_generator,otp_generate
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from .mail import OTP_mail,ID_password_mail
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .customauth import CustomAuth
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
@@ -42,17 +44,22 @@ def user_register(request):
                 if not User.objects.filter(email=email).exists() or Register_User.objects.filter(phone=phone).exists():
                     auto_generate_id=id_generator()
                     auto_generate_password=password_generator()
-                    user = User(username=auto_generate_id,first_name=first_name,last_name=last_name,email=email,password=auto_generate_password)
+                    user = User(username=auto_generate_id,first_name=first_name,last_name=last_name,email=email,password=make_password(auto_generate_password))
                     register_User=Register_User(user=user,address=address,gender=gender,user_type=user_type,dob=dob,pincode=pincode,phone=phone)
                     auto_generate_otp=otp_generate()
                     user.save()
+                    if register_User.USER_TYPES == "Staff":
+                        staff_group = Group.objects.get(name='Staff_group')
+                        user.groups.add(staff_group)
+                    elif register_User.USER_TYPES == "Doctor":
+                        doctor_group = Group.objects.get(name='Doctor_group')
+                        user.groups.add(doctor_group)
                     register_User.save()
                     user_OTP = OTP(user=user,otp=auto_generate_otp,otp_created_at=timezone.now())
                     user_OTP.save()
                     ## send the otp to the user email
                     OTP_mail(auto_generate_otp,email)
                     auto_generate =Auto_generate(user=user,auto_user_id=auto_generate_id,auto_password=make_password(auto_generate_password))
-                    Register_User.is_active= False
                     messages.success(request, "Profile details updated.")
                     auto_generate.save()                    
                     request.session['user_name'] = user.username  # Save for OTP verification
@@ -82,7 +89,6 @@ def user_login(request):
             user.last_login = timezone.now()
             user.save(update_fields=['last_login']) ## save the user login time in the system
             login(request,user)  ## login the user 
-            print("hellow world")
             return redirect("/home", {'user': request.user})
         else:
             messages.success(request, "please register first....")
@@ -138,3 +144,13 @@ def forgot_password(request):
 def user_logout(request):
     logout(request)
     return redirect('/')  # after redirect user go to home page
+
+
+## staff login 
+@login_required
+def staff_dashboard(request):
+    # Only allow users in the Staff group to view this page
+    if request.user.groups.filter(USER_TYPES='Staff').exists():
+        return render(request, 'staff_dashboard.html', {})
+    else:
+        return redirect('/home')  # Redirect non-staff users to home page
