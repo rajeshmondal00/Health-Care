@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href={% static '/css/staff_dashboard.css' %}>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#tasks">Tasks</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Welcome, Staff Member</h1>
+            </header>
+            
+            <!-- Cards Section -->
+            <section class="cards">
+                <div class="card">
+                    <h3>Total Tasks</h3>
+                    <p>45</p>
+                </div>
+                <div class="card">
+                    <h3>Completed Tasks</h3>
+                    <p>30</p>
+                </div>
+                <div class="card">
+                    <h3>Pending Approvals</h3>
+                    <p>5</p>
+                </div>
+                <div class="card">
+                    <h3>Messages</h3>
+                    <p>12</p>
+                </div>
+            </section>
+
+            <!-- Recent Activity Section -->
+            <section class="recent-activity">
+                <h2>Recent Activity</h2>
+                <ul>
+                    <li>Reviewed task "Report Submission" on 10/20</li>
+                    <li>Approved "Staff Leave" request on 10/19</li>
+                    <li>Updated task "Project X Review" on 10/18</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -11,8 +11,10 @@ from django.contrib.auth.models import User, Group
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.urls import reverse_lazy
 from .customauth import CustomAuth
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def home(request):
@@ -89,7 +91,13 @@ def user_login(request):
             user.last_login = timezone.now()
             user.save(update_fields=['last_login']) ## save the user login time in the system
             login(request,user)  ## login the user 
-            return redirect("/home", {'user': request.user})
+            selective_user = Register_User.objects.get(user=user)
+            if selective_user.user_type== 4:
+                return redirect("/doctor/dashboard") ## redirect Doctor to doctor dashboard page
+            elif selective_user.user_type == 3:
+                return redirect("/staff/dashboard") ## redirect Staff to staff dashboard page
+            else:
+                return redirect("/home", {'user': request.user}) ## redirect Petient to home page
         else:
             messages.success(request, "please register first....")
             return redirect("/login")
@@ -154,3 +162,10 @@ def staff_dashboard(request):
         return render(request, 'staff_dashboard.html', {})
     else:
         return redirect('/home')  # Redirect non-staff users to home page
+
+## doctor dashboard
+def doctor_dashboard(request):
+    return render(request, "doctor_dashboard.html",{'user': request.user})
+
+def staff_dashboard(request):
+    return render(request, 'staff_dashboard.html', {'user': request.user})

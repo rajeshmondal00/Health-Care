@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href={% static "doctor_dashboard.css" %}>
+    <link rel="stylesheet" href={% static "/css/doctor_dashboard.css" %}>
 </head>
 <body>
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <h2>Doctor Dashboard</h2>
+        <p>{{user.username}}</p>
         <ul>
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">My Patients</a></li>
             <li><a href="#">Appointments</a></li>
             <li><a href="#">Messages</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 

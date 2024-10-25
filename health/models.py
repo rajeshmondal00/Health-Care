@@ -21,6 +21,9 @@ class Register_User(models.Model):
                   (4, 'Doctor'),) 
     user_type = models.IntegerField(choices=USER_TYPES)
 
+    class Meta:
+        db_table="health_register_user"
+
 
 # class Appointment(models.Model):
 #     department = models.CharField(max_length=30)
@@ -34,6 +37,9 @@ class Auto_generate(models.Model):
     auto_user_id = models.CharField(max_length=12)
     auto_password = models.CharField(max_length=255)
     last_login = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        db_table="health_auto_generate"
     
 
 class OTP(models.Model):
@@ -44,4 +50,7 @@ class OTP(models.Model):
     def is_otp_valid(self, otp):
         time_diff = timezone.now() - self.otp_created_at
         return self.otp == otp and time_diff.total_seconds() < 300  # 5 minutes validity
+    
+    class Meta:
+        db_table="health_otp"
     
