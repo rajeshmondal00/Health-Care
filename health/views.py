@@ -91,13 +91,16 @@ def user_login(request):
             user.last_login = timezone.now()
             user.save(update_fields=['last_login']) ## save the user login time in the system
             login(request,user)  ## login the user 
-            selective_user = Register_User.objects.get(user=user)
-            if selective_user.user_type== 4:
-                return redirect("/doctor/dashboard") ## redirect Doctor to doctor dashboard page
-            elif selective_user.user_type == 3:
-                return redirect("/staff/dashboard") ## redirect Staff to staff dashboard page
+            if user.is_superuser == True:
+                return redirect("/user_approval/dashboard") ## redirect superuser to approve the register user
             else:
-                return redirect("/home", {'user': request.user}) ## redirect Petient to home page
+                selective_user = Register_User.objects.get(user=user)
+                if selective_user.user_type== 4:
+                    return redirect("/doctor/dashboard") ## redirect Doctor to doctor dashboard page
+                elif selective_user.user_type == 3:
+                    return redirect("/staff/dashboard") ## redirect Staff to staff dashboard page
+                else:
+                    return redirect("/home", {'user': request.user}) ## redirect Petient to home page
         else:
             messages.success(request, "please register first....")
             return redirect("/login")
@@ -169,3 +172,6 @@ def doctor_dashboard(request):
 
 def staff_dashboard(request):
     return render(request, 'staff_dashboard.html', {'user': request.user})
+
+def user_approval_dashboard(request):
+    return render(request, "user_approval_dashboard.html")

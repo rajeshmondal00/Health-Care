@@ -14,11 +14,17 @@ class CustomAuth(ModelBackend):
         if  user_id!= None and password != None:
             # Get the user
                 user1 = User.objects.get(username=user_id) ## to select the user we need primary key of the User table
-                user2 = Auto_generate.objects.get(auto_user_id=user_id) ## to select the user we need primary key of the Auto_generate table
-                if  check_password(password,user2.auto_password): ## check the password of the user
-                    return user1
+                if user1.is_superuser == True:
+                    if check_password(password,user1.password):
+                        return user1
+                    else:
+                        return None
                 else:
-                    return None
+                    user2 = Auto_generate.objects.get(auto_user_id=user_id) ## to select the user we need primary key of the Auto_generate table
+                    if  check_password(password,user2.password): ## check the password of the user
+                        return user1
+                    else:
+                        return None
         return None
 
     def get_user(self, user_id):

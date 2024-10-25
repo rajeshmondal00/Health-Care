@@ -99,7 +99,19 @@ DATABASES = {
         'HOST': 'localhost', 
         'PORT': '3306', 
     },
-    
+    'mongo_db': {
+        'ENGINE': 'djongo',
+        'NAME': 'health_care',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'localhost',
+            'port': 27017,
+            'username': "health_care", 
+            'password': "123456",  
+            'authSource': 'admin',
+            'authMechanism': 'SCRAM-SHA-1',
+        }
+    }
 }
 
 
@@ -157,5 +169,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER ="xxxxxxxxxxxxxxx@gmail.com"
-EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxxx"
+EMAIL_HOST_USER ="xxxxxxxxxxxxxx@gmail.com"
+EMAIL_HOST_PASSWORD = "xxxxxxxxxxxxxxxxx"

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.utils import timezone
+# from mongoengine import Document, StringField, IntField
 
 ## user registration
 class Register_User(models.Model):
@@ -18,7 +19,8 @@ class Register_User(models.Model):
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
     USER_TYPES = ((2, 'Patient'),
                   (3, 'Staff'),
-                  (4, 'Doctor'),) 
+                  (4, 'Doctor'),
+                  ) 
     user_type = models.IntegerField(choices=USER_TYPES)
 
     class Meta:
