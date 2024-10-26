@@ -92,7 +92,7 @@ def user_login(request):
             user.save(update_fields=['last_login']) ## save the user login time in the system
             login(request,user)  ## login the user 
             if user.is_superuser == True:
-                return redirect("/user_approval/dashboard") ## redirect superuser to approve the register user
+                return redirect("/admin_dashboard") ## redirect superuser to approve the register user
             else:
                 selective_user = Register_User.objects.get(user=user)
                 if selective_user.user_type== 4:
@@ -157,21 +157,36 @@ def user_logout(request):
     return redirect('/')  # after redirect user go to home page
 
 
-## staff login 
-@login_required
-def staff_dashboard(request):
-    # Only allow users in the Staff group to view this page
-    if request.user.groups.filter(USER_TYPES='Staff').exists():
-        return render(request, 'staff_dashboard.html', {})
-    else:
-        return redirect('/home')  # Redirect non-staff users to home page
+# ## staff login 
+# @login_required
+# def staff_dashboard(request):
+#     # Only allow users in the Staff group to view this page
+#     if request.user.groups.filter(USER_TYPES='Staff').exists():
+#         return render(request, 'staff_dashboard.html', {})
+#     else:
+#         return redirect('/home')  # Redirect non-staff users to home page
 
 ## doctor dashboard
+@login_required
 def doctor_dashboard(request):
     return render(request, "doctor_dashboard.html",{'user': request.user})
 
+## staff dashboard
+@login_required
 def staff_dashboard(request):
     return render(request, 'staff_dashboard.html', {'user': request.user})
 
+## admin dashboard
+@login_required
+def admin_overview(request):
+    return render(request, "ad_dashboard_overview.html",  {'user': request.user})
+
+
+@login_required
 def user_approval_dashboard(request):
-    return render(request, "user_approval_dashboard.html")
+    # Fetch the 'Doctor' group
+    request_user = Group.objects.get(name='User Approval Request')
+
+    # Get all users in the 'Doctor' group
+    request_users = User.objects.filter(groups=request_user)
+    return render(request, "user_approval_dashboard.html", {'user': request.user},{'request_users': request_users})

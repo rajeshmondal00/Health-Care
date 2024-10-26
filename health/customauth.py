@@ -21,7 +21,7 @@ class CustomAuth(ModelBackend):
                         return None
                 else:
                     user2 = Auto_generate.objects.get(auto_user_id=user_id) ## to select the user we need primary key of the Auto_generate table
-                    if  check_password(password,user2.password): ## check the password of the user
+                    if  check_password(password,user2.auto_password): ## check the password of the user
                         return user1
                     else:
                         return None

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Overview Dashboard</title>
+    <link rel="stylesheet" href={ % static "/css/ad_dashboard_overview.css" % }>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="/admin_dashboard" class="active">Overview</a></li>
+                    <li><a href="/admin_dashboard/user_approval">User Approval</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Admin Overview</h1>
+                <p>Welcome, Admin! Here’s a quick look at the platform's current status.</p>
+            </header>
+
+            <!-- Overview Cards -->
+            <section class="overview-cards">
+                <div class="card">
+                    <h3>Total Users</h3>
+                    <p>350</p>
+                </div>
+                <div class="card">
+                    <h3>Approved Users</h3>
+                    <p>300</p>
+                </div>
+                <div class="card">
+                    <h3>Pending Approvals</h3>
+                    <p>50</p>
+                </div>
+                <div class="card">
+                    <h3>Active Sessions</h3>
+                    <p>120</p>
+                </div>
+            </section>
+
+            <!-- User Activity Table -->
+            <section class="user-activity">
+                <h2>Recent User Activity</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Jane Doe</td>
+                            <td>Login</td>
+                            <td>2023-12-01 10:30 AM</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>John Smith</td>
+                            <td>Submitted Approval</td>
+                            <td>2023-12-01 10:15 AM</td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

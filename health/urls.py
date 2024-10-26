@@ -12,6 +12,7 @@ urlpatterns = [
     path('verify_otp/', views.verify_otp , name="verify_otp"),
     path('staff/dashboard/', views.staff_dashboard, name='staff_dashboard'),
     path('doctor/dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
-    path('user_approval/dashboard/', views.user_approval_dashboard, name='user_approval_dashboard'),
+    path('admin_dashboard/', views.admin_overview, name='admin_overview'),
+    path('admin_dashboard/user_approval/', views.user_approval_dashboard, name='user_approval_dashboard'),
 ]
 

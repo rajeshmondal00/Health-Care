@@ -12,10 +12,12 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <h2>Admin Dashboard</h2>
+            <h3>{{user}}<h3>
+            <br>
             <nav>
                 <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#approval">User Approval</a></li>
+                    <li><a href="/admin_dashboard">Overview</a></li>
+                    <li><a href="/admin_dashboard/user_approval">User Approval</a></li>
                     <li><a href="#settings">Settings</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
@@ -42,8 +44,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for request in request_users%}
                         <tr>
-                            <td>101</td>
+                            <td>{{request.username}}</td>
                             <td>Jane Doe</td>
                             <td>jane.doe@example.com</td>
                             <td>Staff</td>
@@ -52,6 +55,7 @@
                                 <button class="reject-btn">Reject</button>
                             </td>
                         </tr>
+                        {% endfor%}
                         <tr>
                             <td>102</td>
                             <td>John Smith</td>
