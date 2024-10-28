@@ -6,6 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Approval Dashboard</title>
     <link rel="stylesheet" href={% static "/css/user_approval_dashboard.css" %}>
+    <script>
+        // approve the user
+        async function approveUser(userId) { 
+            try {
+                const response = await fetch('approve/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'  // Add the CSRF token for security
+                    },
+                    body: `user_id=${userId}`
+                });
+
+                const data = await response.json();
+                if (data.status === 'success') {
+                    alert(data.message);
+                    document.getElementById(`user-row-${userId}`).style.display = 'none'; // Remove approved user row
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // reject the user
+        async function rejectUser(userId) {
+            try {
+                const response = await fetch('reject/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'  // Add CSRF token for security
+                    },
+                    body: `user_id=${userId}`
+                });
+    
+                const data = await response.json();
+                if (data.status === 'success') {
+                    alert(data.message);
+                    document.getElementById(`user-row-${userId}`).style.display = 'none'; // Remove the rejected user row
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="dashboard">
@@ -44,29 +93,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for request in request_users%}
+                        {% for request in users_request%}
                         <tr>
-                            <td>{{request.username}}</td>
-                            <td>Jane Doe</td>
-                            <td>jane.doe@example.com</td>
-                            <td>Staff</td>
+                            <td>{{request.id}}</td>
+                            <td>{{request.first_name}} {{request.last_name}}</td>
+                            <td>{{request.email}}</td>
+                            
+                            {% for user_type in users_type %}
+                                
+                                {% if request.id == user_type.user_id %}
+                                <td>{{user_type.get_user_type_display}}</td>
+                                {% endif %}
+                                    
+                            {% endfor %}
+                                
                             <td>
-                                <button class="approve-btn">Approve</button>
-                                <button class="reject-btn">Reject</button>
+                                <button onclick="approveUser({{ request.id }})" class="approve-btn">Approve</button>
+                                <button onclick="rejectUser({{ request.id }})" class="reject-btn">Reject</button>
                             </td>
                         </tr>
                         {% endfor%}
-                        <tr>
-                            <td>102</td>
-                            <td>John Smith</td>
-                            <td>john.smith@example.com</td>
-                            <td>Doctor</td>
-                            <td>
-                                <button class="approve-btn">Approve</button>
-                                <button class="reject-btn">Reject</button>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </section>

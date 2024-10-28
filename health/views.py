@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import login ,logout
 from .models import Register_User,Auto_generate,OTP
 from .utility import id_generator,password_generator,otp_generate
@@ -11,10 +11,11 @@ from django.contrib.auth.models import User, Group
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.urls import reverse_lazy
 from .customauth import CustomAuth
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse ,HttpResponseRedirect
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
@@ -50,12 +51,12 @@ def user_register(request):
                     register_User=Register_User(user=user,address=address,gender=gender,user_type=user_type,dob=dob,pincode=pincode,phone=phone)
                     auto_generate_otp=otp_generate()
                     user.save()
-                    if register_User.USER_TYPES == "Staff":
-                        staff_group = Group.objects.get(name='Staff_group')
-                        user.groups.add(staff_group)
-                    elif register_User.USER_TYPES == "Doctor":
-                        doctor_group = Group.objects.get(name='Doctor_group')
-                        user.groups.add(doctor_group)
+                    # if register_User.USER_TYPES == "Staff":
+                    #     staff_group = Group.objects.get(name='Staff_group')
+                    #     user.groups.add(staff_group)
+                    # elif register_User.USER_TYPES == "Doctor":
+                    #     doctor_group = Group.objects.get(name='Doctor_group')
+                    #     user.groups.add(doctor_group)
                     register_User.save()
                     user_OTP = OTP(user=user,otp=auto_generate_otp,otp_created_at=timezone.now())
                     user_OTP.save()
@@ -184,9 +185,35 @@ def admin_overview(request):
 
 @login_required
 def user_approval_dashboard(request):
-    # Fetch the 'Doctor' group
-    request_user = Group.objects.get(name='User Approval Request')
+    request_user = Group.objects.get(name='User Approval Request') # Fetch the 'User Approval Request' group
+    request_users = User.objects.filter(groups=request_user)     # Get all users in the 'User Approval Request' group
+    request_user_type = Register_User.objects.all
+    return render(request, "user_approval_dashboard.html", {'user': request.user , 'users_request': request_users, "users_type": request_user_type})
 
-    # Get all users in the 'Doctor' group
-    request_users = User.objects.filter(groups=request_user)
-    return render(request, "user_approval_dashboard.html", {'user': request.user},{'request_users': request_users})
+ ## approved the user from admin dashboard
+@login_required
+@csrf_exempt  # Only use this decorator if you are testing; in production, use CSRF tokens in your AJAX request.
+@require_POST
+def user_approve(request):
+    user_id = request.POST.get('user_id')
+    try:
+        user = User.objects.get(id=user_id)
+        user.is_active = True
+        user.save()
+        group = get_object_or_404(Group, name="User Approval Request")
+        # Remove user from the group
+        user.groups.remove(group)
+        return JsonResponse({'status': 'success', 'message': 'User activated successfully.'}) 
+    except User.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'User not found.'})
+    
+## reject the user from admin bashboard
+@login_required
+@csrf_exempt  # Temporarily disable CSRF for testing; consider using CSRF token in production
+def delete_user(request):
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        user = get_object_or_404(User, id=user_id)
+        user.delete()
+        return JsonResponse({'status': 'success', 'message': 'User deleted successfully.'})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'})
